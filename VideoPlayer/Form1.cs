@@ -22,6 +22,21 @@ namespace VideoPlayer
         {
             InitializeComponent();
             FillVideosBox();
+            var container = new ImageTextContainer()
+            {
+                ContainerImage = Image.FromFile("C:\\Users\\miky_\\Downloads\\kca5ee2dv8581.jpg"),
+                ContainerText = "Texto de ejemplo",
+                Location = new Point(50, 50) // Posición en el formulario
+            };
+
+            // Manejar el evento de clic
+            container.ContainerClicked += (s, e) =>
+            {
+                MessageBox.Show("Contenedor clickeado!");
+            };
+
+            // Agregar el contenedor al formulario
+            this.Controls.Add(container);
         }
 
         private void button1_Click(object sender, EventArgs e)
