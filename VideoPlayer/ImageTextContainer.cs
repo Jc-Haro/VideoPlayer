@@ -6,14 +6,14 @@ public class ImageTextContainer : UserControl
 {
     private PictureBox pictureBox;
     private Label label;
+    string videoURL;
 
     public event EventHandler ContainerClicked;
 
-    public ImageTextContainer(string image, string title)
+    public ImageTextContainer(string image, string title, string videoURL)
     {
-        InitializeComponents(image,title);
-        
-        
+        InitializeComponents(image, title);
+        this.videoURL = videoURL;
     }
     private void InitializeComponents(string image, string title)
     {
@@ -47,6 +47,17 @@ public class ImageTextContainer : UserControl
         // Propagar el clic de los controles hijos
         pictureBox.Click += (s, e) => ContainerClicked?.Invoke(this, e);
         label.Click += (s, e) => ContainerClicked?.Invoke(this, e);
+    }
+
+    public string ChangeDowloadText()
+    {
+        return "ftp://127.0.0.1/" + videoURL;
+    }
+
+
+    public string ChangeVideoURL()
+    {
+        return "http://localhost/video-platform/" + videoURL;
     }
 
     // Propiedad para establecer la imagen

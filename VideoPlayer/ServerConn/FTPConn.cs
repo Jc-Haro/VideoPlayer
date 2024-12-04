@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-
+using MySql.Data.MySqlClient;
 
 
 namespace VideoPlayer.FTPConn
@@ -17,7 +16,7 @@ namespace VideoPlayer.FTPConn
         public void DataBase()
         {
             string conexionString = "Server=localhost;Database=videofilesdb;User id=root;Password=;";
-            using (SqlConnection conexion = new SqlConnection(conexionString))
+            using (MySqlConnection conexion = new MySqlConnection(conexionString))
             try
             {
                 conexion.Open();
