@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using VideoPlayer.FTPConn;
+using System.Threading;
 
 namespace VideoPlayer
 {
@@ -11,6 +12,10 @@ namespace VideoPlayer
         private FTPConnection fTPConn = new FTPConnection();
         private FlowLayoutPanel flowLayoutPanel;
         string videoToDowload;
+        Thread hilo1;
+        Thread hilo2;
+        Thread hilo3;
+        public Form1()
 
         public VideoPage()
         {
@@ -18,6 +23,11 @@ namespace VideoPlayer
 
             // Inicializar el FlowLayoutPanel
             InitializeFlowLayoutPanel();
+            ThreadStart dataThead  = new ThreadStart(fTPConn.DataBase);
+            hilo1 = new Thread(dataThead);
+            hilo1.Start();
+
+
             fTPConn.DataBase();
             fTPConn.GetVideosInfo();
             // Agregar un contenedor inicial como ejemplo
@@ -67,11 +77,13 @@ namespace VideoPlayer
                 if (fTPConn.IsValidVideoFile(selectedFile))
                 {
                     string url = ftpUrl.Text;
-                    fTPConn.UploadFile(url, selectedFile);
+                    Thread uploadThead = new Thread(() => fTPConn.UploadFile(url, selectedFile));
+                    uploadThead.Start();
+                    //fTPConn.UploadFile(url, selectedFile);
 
                     // Agregar un nuevo contenedor al FlowLayoutPanel con la imagen subida
-                    var container = new ImageTextContainer(selectedFile, "Archivo Subido",ftpUrl.Text);
-                    AddImageTextContainer(container);
+                    //var container = new ImageTextContainer(selectedFile, "Archivo Subido", ftpUrl.Text);
+                    // AddImageTextContainer(container);
                 }
                 else
                 {
@@ -83,11 +95,14 @@ namespace VideoPlayer
         private void buttonDownload_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 string downloadPath = Path.Combine(folderBrowserDialog1.SelectedPath, "downloaded_video.mp4");
 
                 string url = ftpUrl.Text;  // FTP URL
-                fTPConn.DownloadFile(url, downloadPath);
+                Thread downloadThead = new Thread(() => fTPConn.DownloadFile(url, downloadPath));
+                //hilo3 = new Thread(downloadThead);
+                downloadThead.Start();
             }
         }
 
