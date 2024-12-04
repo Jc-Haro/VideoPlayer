@@ -6,12 +6,28 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
+
 
 namespace VideoPlayer.FTPConn
 {
     public class FTPConnection
     {
-
+        public void DataBase()
+        {
+            string conexionString = "Server=localhost;Database=videofilesdb;User id=root;Password=;";
+            using (SqlConnection conexion = new SqlConnection(conexionString))
+            try
+            {
+                conexion.Open();
+                MessageBox.Show("conecxion correcta","conecxioncorrecta",MessageBoxButtons.OK);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message,"error insesperado",MessageBoxButtons.OK);
+            }
+        }
         public void UploadFile(string url, string filePath)
         {
 

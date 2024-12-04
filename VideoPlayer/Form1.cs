@@ -17,10 +17,11 @@ namespace VideoPlayer
     {
         private FTPConnection fTPConn = new FTPConnection();
 
-
         public Form1()
         {
             InitializeComponent();
+            fTPConn.DataBase();
+
             var container = new ImageTextContainer()
             {
                 ContainerImage = Image.FromFile("C:\\ftp\\1729598674043780.jpg"),
