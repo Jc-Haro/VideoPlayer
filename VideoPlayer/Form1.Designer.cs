@@ -30,7 +30,6 @@ namespace VideoPlayer
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.ftpUrl = new System.Windows.Forms.TextBox();
             this.buttonUpload = new System.Windows.Forms.Button();
@@ -38,16 +37,8 @@ namespace VideoPlayer
             this.listLog = new System.Windows.Forms.ListBox();
             this.openFileDialogFolderPicker = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(528, 9);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(260, 429);
-            this.textBox1.TabIndex = 1;
             // 
             // button1
             // 
@@ -97,17 +88,25 @@ namespace VideoPlayer
             // 
             this.openFileDialogFolderPicker.FileName = "openFileDialog1";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(588, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 424);
+            this.flowLayoutPanel1.TabIndex = 7;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.listLog);
             this.Controls.Add(this.buttonDownload);
             this.Controls.Add(this.buttonUpload);
             this.Controls.Add(this.ftpUrl);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "scrollbarTry";
             this.ResumeLayout(false);
@@ -116,7 +115,6 @@ namespace VideoPlayer
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox ftpUrl;
         private System.Windows.Forms.Button buttonUpload;
@@ -124,6 +122,7 @@ namespace VideoPlayer
         private System.Windows.Forms.ListBox listLog;
         private System.Windows.Forms.OpenFileDialog openFileDialogFolderPicker;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 

@@ -9,16 +9,18 @@ public class ImageTextContainer : UserControl
 
     public event EventHandler ContainerClicked;
 
-    public ImageTextContainer()
+    public ImageTextContainer(string image, string title)
     {
-        InitializeComponents();
+        InitializeComponents(image,title);
+        
+        
     }
-
-    private void InitializeComponents()
+    private void InitializeComponents(string image, string title)
     {
         // Configurar PictureBox
         pictureBox = new PictureBox
         {
+            Image = Image.FromFile(image),
             SizeMode = PictureBoxSizeMode.StretchImage,
             Size = new Size(50, 50), // Tamaño de la imagen
             Location = new Point(5, 5)
@@ -27,6 +29,7 @@ public class ImageTextContainer : UserControl
         // Configurar Label
         label = new Label
         {
+            Text = title,
             AutoSize = true,
             Location = new Point(60, 20), // Posición del texto
             Font = new Font("Arial", 10)
@@ -59,4 +62,6 @@ public class ImageTextContainer : UserControl
         get => label.Text;
         set => label.Text = value;
     }
+
+
 }
