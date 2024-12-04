@@ -23,7 +23,7 @@ namespace VideoPlayer
             InitializeComponent();
             var container = new ImageTextContainer()
             {
-                ContainerImage = Image.FromFile("C:\\Users\\JC\\Pictures\\Backgrounds\\carolina-nebula.jpg"),
+                ContainerImage = Image.FromFile("C:\\ftp\\1729598674043780.jpg"),
                 ContainerText = "Texto de ejemplo",
                 Location = new Point(50, 50) // Posición en el formulario
             };
