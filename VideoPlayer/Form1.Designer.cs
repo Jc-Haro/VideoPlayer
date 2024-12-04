@@ -2,7 +2,7 @@
 
 namespace VideoPlayer
 {
-    partial class Form1
+    partial class VideoPage
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace VideoPlayer
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoPage));
             this.ftpUrl = new System.Windows.Forms.TextBox();
             this.buttonUpload = new System.Windows.Forms.Button();
             this.buttonDownload = new System.Windows.Forms.Button();

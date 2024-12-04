@@ -9,7 +9,6 @@ namespace VideoPlayer.ServerConn
 {
     public class HTTPConn
     {
-
         public void SetVideo(AxWindowsMediaPlayer videoPlayer, string url)
         {
             videoPlayer.URL = url;

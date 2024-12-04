@@ -6,20 +6,20 @@ using VideoPlayer.FTPConn;
 
 namespace VideoPlayer
 {
-    public partial class Form1 : Form
+    public partial class VideoPage : Form
     {
         private FTPConnection fTPConn = new FTPConnection();
         private FlowLayoutPanel flowLayoutPanel;
         string videoToDowload;
 
-        public Form1()
+        public VideoPage()
         {
             InitializeComponent();
 
             // Inicializar el FlowLayoutPanel
             InitializeFlowLayoutPanel();
             fTPConn.DataBase();
-
+            fTPConn.GetVideosInfo();
             // Agregar un contenedor inicial como ejemplo
             var container = new ImageTextContainer("C:\\ftp\\faust.jpg", "hola 1","musculoso.mp4");
             var container2 = new ImageTextContainer("C:\\ftp\\roland.jpg", "hola 2","ocellot.mp4");
@@ -82,7 +82,7 @@ namespace VideoPlayer
 
         private void buttonDownload_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 string downloadPath = Path.Combine(folderBrowserDialog1.SelectedPath, "downloaded_video.mp4");
 
