@@ -9,43 +9,63 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VideoPlayer.FTPConn;
 
 namespace VideoPlayer
 {
     public partial class Form1 : Form
     {
-        int mondongocount = 0;
-        private static string filePath = AppDomain.CurrentDomain.BaseDirectory + "\\videos.json";
+        private FTPConnection fTPConn = new FTPConnection();
 
 
         public Form1()
         {
             InitializeComponent();
-            FillVideosBox();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            VideoData videoData = new VideoData("title");
-            SaveData data = new SaveData(videoData);
-        }
-
-        private void FillVideosBox()
-        {
-            List<VideoData> list = new List<VideoData>();
-            if (File.Exists(filePath))
+            var container = new ImageTextContainer()
             {
-                GetData data = new GetData();
-                string jsonIn = data.GetDataFromFile(filePath);
-                list = JsonSerializer.Deserialize<List<VideoData>>(jsonIn);
-                for (int i = 0; i < list.Count; i++)
+                ContainerImage = Image.FromFile("C:\\Users\\JC\\Pictures\\Backgrounds\\carolina-nebula.jpg"),
+                ContainerText = "Texto de ejemplo",
+                Location = new Point(50, 50) // Posición en el formulario
+            };
+
+            // Manejar el evento de clic
+            container.ContainerClicked += (s, e) =>
+            {
+                MessageBox.Show("Contenedor clickeado!");
+            };
+
+            // Agregar el contenedor al formulario
+            this.Controls.Add(container);
+        }
+
+        private void buttonUpload_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogFolderPicker.ShowDialog() == DialogResult.OK) 
+            {
+                string selectedFile = openFileDialogFolderPicker.FileName;
+                if (fTPConn.IsValidVideoFile(selectedFile)) 
                 {
-                    textBox1.Text += list[i].Title + " "  + Environment.NewLine;
-                    mondongocount++;
-                    textBox1.SelectionStart = textBox1.TextLength;
+                    string url = ftpUrl.Text; 
+                    fTPConn.UploadFile(url, selectedFile);
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid file");
                 }
             }
-            
         }
+
+        private void buttonDownload_Click(object sender, EventArgs e)
+        {
+            // Open the folder picker dialog
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string downloadPath = Path.Combine(folderBrowserDialog1.SelectedPath, "downloaded_video.mp4");
+
+                string url = ftpUrl.Text;  // FTP URL
+                fTPConn.DownloadFile(url, downloadPath);
+            }
+        }
+
     }
 }

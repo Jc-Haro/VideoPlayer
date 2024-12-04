@@ -1,4 +1,6 @@
-﻿namespace VideoPlayer
+﻿using System.Security.Principal;
+
+namespace VideoPlayer
 {
     partial class Form1
     {
@@ -30,6 +32,12 @@
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.ftpUrl = new System.Windows.Forms.TextBox();
+            this.buttonUpload = new System.Windows.Forms.Button();
+            this.buttonDownload = new System.Windows.Forms.Button();
+            this.listLog = new System.Windows.Forms.ListBox();
+            this.openFileDialogFolderPicker = new System.Windows.Forms.OpenFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // textBox1
@@ -49,13 +57,55 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // ftpUrl
+            // 
+            this.ftpUrl.Location = new System.Drawing.Point(12, 135);
+            this.ftpUrl.Name = "ftpUrl";
+            this.ftpUrl.Size = new System.Drawing.Size(167, 20);
+            this.ftpUrl.TabIndex = 3;
+            // 
+            // buttonUpload
+            // 
+            this.buttonUpload.Location = new System.Drawing.Point(11, 198);
+            this.buttonUpload.Name = "buttonUpload";
+            this.buttonUpload.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpload.TabIndex = 4;
+            this.buttonUpload.Text = "Upload";
+            this.buttonUpload.UseVisualStyleBackColor = true;
+            this.buttonUpload.Click += new System.EventHandler(this.buttonUpload_Click);
+            // 
+            // buttonDownload
+            // 
+            this.buttonDownload.Location = new System.Drawing.Point(11, 227);
+            this.buttonDownload.Name = "buttonDownload";
+            this.buttonDownload.Size = new System.Drawing.Size(75, 23);
+            this.buttonDownload.TabIndex = 5;
+            this.buttonDownload.Text = "Dowload";
+            this.buttonDownload.UseVisualStyleBackColor = true;
+            this.buttonDownload.Click += new System.EventHandler(this.buttonDownload_Click);
+            // 
+            // listLog
+            // 
+            this.listLog.FormattingEnabled = true;
+            this.listLog.Location = new System.Drawing.Point(261, 198);
+            this.listLog.Name = "listLog";
+            this.listLog.Size = new System.Drawing.Size(227, 238);
+            this.listLog.TabIndex = 6;
+            // 
+            // openFileDialogFolderPicker
+            // 
+            this.openFileDialogFolderPicker.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listLog);
+            this.Controls.Add(this.buttonDownload);
+            this.Controls.Add(this.buttonUpload);
+            this.Controls.Add(this.ftpUrl);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
@@ -68,6 +118,12 @@
         #endregion
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox ftpUrl;
+        private System.Windows.Forms.Button buttonUpload;
+        private System.Windows.Forms.Button buttonDownload;
+        private System.Windows.Forms.ListBox listLog;
+        private System.Windows.Forms.OpenFileDialog openFileDialogFolderPicker;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
